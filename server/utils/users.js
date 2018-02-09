@@ -12,10 +12,27 @@ class Users {
   }
   // create a method for class
   addUser (id,name,room) {
+    var resUser = this.getUser(id)
     var user = {id, name, room}
     this.users.push(user)
     return user
     //return `${this.name} is ${this.age} year(s) old`
+  }
+  getUser (id) {
+    var resUser = this.users.filter((user) => user.id === id)[0]
+    return resUser
+  }
+  removeUser (id) {
+    var resUser = this.getUser(id)
+    if(resUser) {
+      this.users = this.users.filter((user) => user.id !== id)
+      return resUser
+    }
+  }
+  getUserList (room) {
+    var users = this.users.filter((user) => user.room === room)
+    var namesArray = users.map((user) => user.name)
+    return namesArray
   }
 }
 
